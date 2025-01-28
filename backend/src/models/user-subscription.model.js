@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const SubscribedToSchema = new mongoose.Schema(
+const UserSubscriptionSchema = new mongoose.Schema(
   {
     subscriptionId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -22,10 +22,17 @@ const SubscribedToSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    paymentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Payment",
+    },
   },
   { timestamps: true }
 );
 
-const SubscribedTo = mongoose.model("SubscribedTo", SubscribedToSchema);
+const UserSubscription = mongoose.model(
+  "UserSubscription",
+  UserSubscriptionSchema
+);
 
-export default SubscribedTo;
+export default UserSubscription;
