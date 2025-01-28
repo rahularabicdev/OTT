@@ -10,19 +10,30 @@ const VideoSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    release_date: {
+    releaseDate: {
       type: Date,
     },
     duration: {
       type: Number,
     },
-    media: {
+    thumbnail: {
       type: String,
     },
-    content_rating: {
+    contentRating: {
       type: String,
-      enum: ["G", "PG", "PG-13", "R"],
+      enum: ["G", "PG", "PG-13", "R", "NC-17"],
     },
+    mediaChunks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "MediaChunk",
+      },
+    ],
+    actors: [
+      {
+        type: String,
+      },
+    ],
     genres: [
       {
         type: mongoose.Schema.Types.ObjectId,
