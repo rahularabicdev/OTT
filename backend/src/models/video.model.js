@@ -34,18 +34,26 @@ const VideoSchema = new mongoose.Schema(
         type: String,
       },
     ],
+    directors: [
+      {
+        type: String,
+      },
+    ],
     genres: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Genre",
       },
     ],
-    likes: [
+    tags: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        type: String,
       },
     ],
+    likes: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

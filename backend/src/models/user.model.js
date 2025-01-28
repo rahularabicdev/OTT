@@ -87,6 +87,13 @@ const UserSchema = new mongoose.Schema(
         ref: "Genre",
       },
     ],
+    likedVideos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Videos",
+        unique: true,
+      },
+    ],
     lastLogin: {
       type: Date,
     },
