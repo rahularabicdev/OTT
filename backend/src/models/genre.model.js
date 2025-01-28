@@ -10,6 +10,10 @@ const GenreSchema = new mongoose.Schema(
     description: {
       type: String,
     },
+    parentGenre: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Genre",
+    },
   },
   { timestamps: true }
 );
