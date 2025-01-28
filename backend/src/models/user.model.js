@@ -8,48 +8,86 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
+      trim: true,
+      match: [/.+@.+\..+/, "Invalid email format"],
+      index: true,
     },
-    name: {
+    firstName: {
       type: String,
       required: true,
+      trim: true,
     },
-    phone_number: {
+    lastName: {
+      type: String,
+      trim: true,
+    },
+    phoneNumber: {
       type: String,
       required: true,
       unique: true,
+      match: [/^\d{10,15}$/, "Invalid phone number"],
+      index: true,
     },
     avatar: {
       type: String,
     },
-    age: {
+    dateOfBirth: {
       type: Date,
       required: true,
     },
     role: {
-      type: String,
-      enum: ["admin", "user"],
-      default: "user",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserRole",
     },
+
     refreshToken: {
       type: String,
+      select: false,
+      index: true,
     },
+
     is_verified: {
       type: Boolean,
       default: false,
     },
     verificationToken: {
       type: String,
+      select: false,
     },
     verificationTokenExpiry: {
       type: Date,
+      select: false,
     },
+
     password: {
       type: String,
+      required: true,
+      select: false,
     },
     passwordResetToken: {
       type: String,
+      select: false,
     },
     passwordResetTokenExpiry: {
+      type: Date,
+      select: false,
+    },
+
+    watchList: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video",
+        unique: true,
+      },
+    ],
+    preferences: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Genre",
+      },
+    ],
+    lastLogin: {
       type: Date,
     },
   },
