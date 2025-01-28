@@ -16,6 +16,10 @@ const SubscriptionSchema = new mongoose.Schema(
     price: {
       type: Number,
     },
+    durationInDays: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
