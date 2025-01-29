@@ -5,7 +5,7 @@ import User from "../models/user.model.js";
 import getModelByName from "../utils/getModelByName.js";
 
 // Verify that the user is authenticated
-export const verifyJWT = asyncHandler(async (req, res, next) => {
+export const verifyUser = asyncHandler(async (req, res, next) => {
   try {
     const token =
       req.cookies?.accessToken ||

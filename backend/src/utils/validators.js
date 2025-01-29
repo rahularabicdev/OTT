@@ -34,7 +34,7 @@ export const phoneNumberValidation = (phoneNumber) => {
 };
 
 // Compare Field Validation
-export const compareFieldValidaton = (input1, input2, errMessage) => {
+export const compareFieldValidation = (input1, input2, errMessage) => {
   if (input1 !== input2) {
     throw new ApiError(400, errMessage || "Two inputs value does not match");
   }
