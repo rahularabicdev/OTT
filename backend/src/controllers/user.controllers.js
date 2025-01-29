@@ -30,18 +30,18 @@ export const registerController = asyncHandler(async (req, res) => {
    * TODO: Sending Response
    * **/
 
-  // Get Data From Frontend
+  // * Get Data From Frontend
   const { email, firstName, lastName, phoneNumber, password, password2 } =
     req.body;
 
-  // Validation Check
+  // * Validation Check
   notEmptyValidation([email, firstName, password]);
   emailValidation(email);
   phoneNumberValidation(phoneNumber);
   passwordValidation(password);
   compareFieldValidaton(password, password2, "Passwords does not match");
 
-  // Check If user Exists
+  // * Check If user Exists
   const emailExist = await User.findOne({ email });
   const phoneExist = await User.findOne({ phoneNumber });
   if (emailExist) {
@@ -51,7 +51,7 @@ export const registerController = asyncHandler(async (req, res) => {
     throw new ApiError(409, "User with phone already exists");
   }
 
-  // Adding Role
+  // * Adding Role
   const userRole = await UserRole.findOne({ name: "user" });
   if (!userRole) {
     throw new ApiError(
@@ -60,7 +60,7 @@ export const registerController = asyncHandler(async (req, res) => {
     );
   }
 
-  // Create New User
+  // * Create New User
   const createdUser = await User.create({
     email,
     firstName,
@@ -70,7 +70,7 @@ export const registerController = asyncHandler(async (req, res) => {
     role: userRole._id,
   });
 
-  // Check if user is created
+  // * Check if user is created
   const user = await User.findById(createdUser._id).select(
     "-password -refreshToken"
   );
@@ -78,11 +78,11 @@ export const registerController = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Error creating user, Please try again!");
   }
 
-  // Save Verification Code
+  // * Save Verification Code
   const token = generate20CharToken();
   generateVerificationToken(user._id, token);
   //   sendVerificationCodeEmail(user.email, token);
 
-  // Sending RESPONSE
+  // * Sending Response
   return res.status(201).json(new ApiResponse(200, user, "User registered!"));
 });
