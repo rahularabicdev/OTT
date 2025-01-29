@@ -182,3 +182,69 @@ export const logoutController = asyncHandler(async (req, res) => {
     .clearCookie("refreshToken", options)
     .json(new ApiResponse(200, {}, "User logged out!"));
 });
+
+// Refresh Access Token Controller
+export const refreshAccessTokenController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Refresh token from cookie
+   * TODO: Decode Refresh Token
+   * TODO: Check if user exists
+   * TODO: Compare cookie refresh token with refresh token stored in database
+   * TODO: Generate new access token
+   * TODO: Sending Response
+   * **/
+
+  // * Get Refresh token from cookie or body
+  const incomingRefreshToken =
+    req.cookies?.refreshToken || req.body?.refreshToken;
+
+  if (!incomingRefreshToken) {
+    throw new ApiError(401, "Unauthorized Request");
+  }
+
+  try {
+    // * Decode refresh token
+    const decodedToken = jwt.verify(
+      incomingRefreshToken,
+      process.env.REFRESH_TOKEN_SECRET
+    );
+
+    // * Check if user exists
+    const user = await User.findById(decodedToken._id).select("refreshToken");
+    if (!user) {
+      throw new ApiError(401, "Invalid refresh token");
+    }
+
+    // * Compare cookie refresh token with refresh token stored in database
+    if (incomingRefreshToken !== user.refreshToken) {
+      return res.status(401).json({ message: "Refresh token is expired!" }); // Fix: Added return
+    }
+
+    // * Generate new access token
+    const { accessToken, refreshToken } = await generateAccessRefreshToken(
+      user._id
+    );
+
+    // * Save new refresh token in the database
+    user.refreshToken = refreshToken;
+    await user.save();
+
+    // * Sending Response
+    return res
+      .status(200)
+      .cookie("accessToken", accessToken, options)
+      .cookie("refreshToken", refreshToken, options)
+      .json(
+        new ApiResponse(
+          200,
+          { accessToken, refreshToken },
+          "Access token refreshed!"
+        )
+      );
+  } catch (error) {
+    throw new ApiError(
+      401,
+      error.message || "Invalid or expired refresh token"
+    );
+  }
+});
