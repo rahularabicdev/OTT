@@ -22,6 +22,14 @@ import {
 
 // Register Controller
 export const registerController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get data from frontend
+   * TODO: Validate Data
+   * TODO: Check if user exist
+   * TODO: Create new user
+   * TODO: Sending Response
+   * **/
+
   // Get Data From Frontend
   const { email, firstName, lastName, phoneNumber, password, password2 } =
     req.body;
