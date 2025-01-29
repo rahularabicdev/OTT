@@ -77,7 +77,7 @@ const UserSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Video",
-        unique: true,
+        default: [],
       },
     ],
     preferences: [
@@ -90,7 +90,7 @@ const UserSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Videos",
-        unique: true,
+        default: [],
       },
     ],
     lastLogin: {
