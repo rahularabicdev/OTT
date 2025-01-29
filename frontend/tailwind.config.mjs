@@ -24,6 +24,9 @@ export default {
         darkAlt: "#161A22",
         primary: "#D1D812",
       },
+      fontFamily: {
+        sans: ["Poppins"],
+      },
     },
   },
   plugins: [],
