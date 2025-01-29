@@ -248,3 +248,41 @@ export const refreshAccessTokenController = asyncHandler(async (req, res) => {
     );
   }
 });
+
+// Forgot Password Controller
+export const forgotPasswordController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get email from frontend
+   * TODO: Validate data
+   * TODO: Check if user exists
+   * TODO: Sending Email with password reset token
+   * TODO: Sending Response
+   * **/
+
+  // * Get email from frontend
+  const { email, phoneNumber } = req.body;
+
+  // * Validate data
+  if (!email && !phoneNumber) {
+    throw new ApiError(400, "Please enter your email or phone number.");
+  }
+  if (email) emailValidation(email);
+  if (phoneNumber) phoneNumberValidation(phoneNumber);
+
+  // * Check if user exists
+  const user = await User.findOne({ $or: [{ email }, { phoneNumber }] });
+  if (!user) {
+    throw new ApiError(400, "User does not exist");
+  }
+
+  // * Sending Email with password reset token
+  const token = generate20CharToken();
+  generatePasswordResetToken(user._id, token);
+  // if (email) sendPasswordResetEmail(user.email, user.firstName, token);
+  // if (phoneNumber) sendPasswordResetMessage(user.phoneNumber, user.firstName, token);
+
+  // * Sending Response
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Password reset link sent to your email"));
+});

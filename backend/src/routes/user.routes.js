@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  forgotPasswordController,
   loginController,
   logoutController,
   refreshAccessTokenController,
@@ -20,5 +21,7 @@ router.route("/login").post(loginController);
 router.route("/logout").post(verifyJWT, logoutController);
 
 router.route("/refresh-access-token").post(refreshAccessTokenController);
+
+router.route("/forgot-password").post(forgotPasswordController);
 
 export default router;
