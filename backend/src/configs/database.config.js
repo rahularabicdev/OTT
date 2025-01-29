@@ -2,16 +2,20 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const mongoUrl = process.env.MONGO_URL;
-    const databaseName = "blog";
-    const connectionUrl = `${mongoUrl}/${databaseName}`;
+    const dbUrl = process.env.MONGO_URL;
+    const dbName = "ott";
+    const connectionUrl = `${dbUrl}/${dbName}`;
 
-    const instance = await mongoose.connect(connectionUrl);
+    const instance = await mongoose.connect(connectionUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
     console.log(`😊 Database connected on HOST :: ${instance.connection.host}`);
     return instance;
-    return instance;
   } catch (error) {
-    console.log(`😒 Error connecting Database :: ${error}`);
+    console.error(`😒 Error connecting Database :: ${error.message}`);
+    process.exit(1); // Exit process with failure
   }
 };
 

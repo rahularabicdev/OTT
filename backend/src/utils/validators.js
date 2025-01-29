@@ -6,17 +6,6 @@ export const notEmptyValidation = (fields) => {
   }
   return fields;
 };
-// Username Validation
-export const usernameValidation = (username) => {
-  const usernameRegex = /^[a-zA-Z0-9]+([_\-.][a-zA-Z0-9]+)*$/;
-  if (!usernameRegex.test(username)) {
-    throw new ApiError(
-      400,
-      "Username should only contain alphabets, numbers and (_ - .)"
-    );
-  }
-  return username;
-};
 
 // Email Validation
 export const emailValidation = (email) => {
@@ -33,4 +22,21 @@ export const passwordValidation = (password) => {
     throw new ApiError(400, "Password length must be minimum 6 characters");
   }
   return password;
+};
+
+// Phone Number Validation
+export const phoneNumberValidation = (phoneNumber) => {
+  const phoneRegex = /^\d{10,15}$/;
+  if (!phoneRegex.test(phoneNumber)) {
+    throw new ApiError(400, "Please enter a valid phone number");
+  }
+  return phoneNumber;
+};
+
+// Compare Field Validation
+export const compareFieldValidaton = (input1, input2, errMessage) => {
+  if (input1 !== input2) {
+    throw new ApiError(400, errMessage || "Two inputs value does not match");
+  }
+  return true;
 };

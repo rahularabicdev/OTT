@@ -34,7 +34,6 @@ const UserSchema = new mongoose.Schema(
     },
     dateOfBirth: {
       type: Date,
-      required: true,
     },
     role: {
       type: mongoose.Schema.Types.ObjectId,
