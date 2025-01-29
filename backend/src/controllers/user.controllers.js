@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import User from "../models/user.model.js";
+import UserRole from "../models/user-role.model.js";
 import ApiError from "../utils/apiError.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/apiResponse.js";
@@ -42,6 +43,15 @@ export const registerController = asyncHandler(async (req, res) => {
     throw new ApiError(409, "User with phone already exists");
   }
 
+  // Adding Role
+  const userRole = await UserRole.findOne({ name: "user" });
+  if (!userRole) {
+    throw new ApiError(
+      500,
+      "Default role not found, please setup UserRole collection"
+    );
+  }
+
   // Create New User
   const createdUser = await User.create({
     email,
@@ -49,6 +59,7 @@ export const registerController = asyncHandler(async (req, res) => {
     lastName,
     phoneNumber,
     password,
+    role: userRole._id,
   });
 
   // Check if user is created
