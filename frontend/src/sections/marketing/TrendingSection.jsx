@@ -71,7 +71,11 @@ const TrendingSection = () => {
   return (
     <section className="section">
       <div className="container">
-        <SwiperSlider list={dummy_data} heading="Trending Top 10" />
+        <SwiperSlider
+          list={dummy_data}
+          heading="Trending Top 10"
+          sectionId="trending-top-10"
+        />
       </div>
     </section>
   );

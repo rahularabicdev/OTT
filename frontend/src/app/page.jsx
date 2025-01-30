@@ -2,6 +2,7 @@ import {
   HeroSection,
   PopularSeriesSection,
   TrendingSection,
+  TrendingTvSection,
 } from "@/sections/marketing";
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <HeroSection />
       <TrendingSection />
       <PopularSeriesSection />
+      <TrendingTvSection />
     </>
   );
 };

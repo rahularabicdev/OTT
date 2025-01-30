@@ -1,6 +1,6 @@
 import { SwiperSlider } from "@/components";
 
-const PopularSeriesSection = () => {
+const TrendingTvSection = () => {
   const dummy_data = [
     {
       _id: 1,
@@ -67,18 +67,17 @@ const PopularSeriesSection = () => {
         "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg",
     },
   ];
-
   return (
     <section className="section">
       <div className="container">
         <SwiperSlider
           list={dummy_data}
-          heading="Popular Web Series"
-          sectionId="popular-web-series"
+          heading="Trending TV Series"
+          sectionId="trending-tv-series"
         />
       </div>
     </section>
   );
 };
 
-export default PopularSeriesSection;
+export default TrendingTvSection;
