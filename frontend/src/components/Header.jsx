@@ -11,7 +11,7 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="py-6 px-10 relative">
+    <header className="py-6 px-10 absolute w-full z-50">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-5">
           {/* Logo */}

@@ -6,3 +6,9 @@
   outline: 0;
   border: 0;
 }
+
+@layer utilities {
+  .button {
+    @apply bg-primary text-dark font-semibold rounded px-7 py-3 transition duration-500 hover:bg-light;
+  }
+}
