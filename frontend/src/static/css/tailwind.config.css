@@ -8,7 +8,19 @@
 }
 
 @layer utilities {
+  .section {
+    @apply py-24;
+  }
+
+  .heading {
+    @apply text-4xl text-light font-semibold capitalize;
+  }
+
   .button {
-    @apply bg-primary text-dark font-semibold rounded px-7 py-3 transition duration-500 hover:bg-light;
+    @apply bg-primary text-dark font-semibold rounded px-7 py-3 transition duration-500 hover:bg-light flex items-center justify-center;
+  }
+
+  .button-sm {
+    @apply bg-primary text-dark text-sm font-medium rounded px-4 py-1.5 transition duration-500 hover:bg-light flex items-center justify-center;
   }
 }

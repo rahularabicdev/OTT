@@ -1,9 +1,10 @@
-import { HeroSection } from "@/sections/marketing";
+import { HeroSection, TrendingSection } from "@/sections/marketing";
 
 const Home = () => {
   return (
     <>
       <HeroSection />
+      <TrendingSection />
     </>
   );
 };
