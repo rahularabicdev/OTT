@@ -1,10 +1,15 @@
-import { HeroSection, TrendingSection } from "@/sections/marketing";
+import {
+  HeroSection,
+  PopularSeriesSection,
+  TrendingSection,
+} from "@/sections/marketing";
 
 const Home = () => {
   return (
     <>
       <HeroSection />
       <TrendingSection />
+      <PopularSeriesSection />
     </>
   );
 };
