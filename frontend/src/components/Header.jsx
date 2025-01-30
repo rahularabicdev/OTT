@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import { twMerge } from "tailwind-merge";
 
 import { Logo } from "@/static/images";
@@ -13,8 +12,9 @@ const Header = () => {
 
   return (
     <header className="py-6 px-10 relative">
-      <div className="flex items-centerc justify-between">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-5">
+          {/* Logo */}
           <Link href="/" className="relative inline-block w-56 h-auto">
             <Image
               src={Logo}
@@ -24,12 +24,13 @@ const Header = () => {
               height="150"
             />
           </Link>
+          {/* Links */}
           <ul className="flex gap-4">
             <li>
               <Link
                 href="/tv-shows"
                 className={twMerge(
-                  "text-lightAlt transition-all duration-100 hover:text-light",
+                  "text-lightAlt transition-all duration-500 hover:text-light",
                   pathname.startsWith("/tv-shows") && "text-light"
                 )}
               >
@@ -48,6 +49,23 @@ const Header = () => {
               </Link>
             </li>
           </ul>
+        </div>
+
+        <div className="flex items-center justify-end gap-7">
+          {/* Search Bar */}
+          <input
+            type="text"
+            className="w-52 px-4 py-2 rounded border-none text-sm bg-darkAlt text-lightAlt"
+            placeholder="Search movies"
+          />
+
+          {/* Link */}
+          <Link
+            href="/login"
+            className="text-sm text-primary hover:text-light transition duration-500"
+          >
+            Get Started
+          </Link>
         </div>
       </div>
     </header>
