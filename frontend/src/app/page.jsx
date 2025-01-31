@@ -11,10 +11,10 @@ const Home = () => {
   return (
     <>
       <HeroSection />
+      <FeaturesSection />
       <TrendingSection />
       <PopularSeriesSection />
       <TrendingTvSection />
-      <FeaturesSection />
       <FAQSection />
     </>
   );

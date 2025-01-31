@@ -6,7 +6,7 @@ import Link from "next/link";
 const HeroSection = () => {
   return (
     <section
-      className={`relative w-full min-h-[90vh] h-auto flex justify-center py-10`}
+      className={`relative w-full min-h-screen h-auto flex justify-center py-10`}
     >
       <div className="container flex items-center justify-end flex-col relative z-20">
         <h1 className="text-6xl font-bold text-light capitalize mb-5">
