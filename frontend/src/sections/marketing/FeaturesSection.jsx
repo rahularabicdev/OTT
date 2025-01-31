@@ -7,7 +7,7 @@ import {
   Feature04,
 } from "@/static/images/icons";
 
-const ScrollerSection = () => {
+const FeaturesSection = () => {
   return (
     <section className="section">
       <div className="container">
@@ -62,4 +62,4 @@ const ScrollerSection = () => {
   );
 };
 
-export default ScrollerSection;
+export default FeaturesSection;

@@ -3,6 +3,7 @@ import PopularSeriesSection from "./PopularSeriesSection";
 import FeaturesSection from "./FeaturesSection";
 import TrendingSection from "./TrendingSection";
 import TrendingTvSection from "./TrendingTvSection";
+import FAQSection from "./FAQSection";
 
 export {
   HeroSection,
@@ -10,4 +11,5 @@ export {
   PopularSeriesSection,
   TrendingTvSection,
   FeaturesSection,
+  FAQSection,
 };
