@@ -15,7 +15,7 @@ const HeroSection = () => {
         <h3 className="text-light text-2xl font-medium mb-8">
           Unlimited Movies, TV Shows and more.
         </h3>
-        <Link href="/login" className="button">
+        <Link href="/register" className="button">
           Get Started
         </Link>
       </div>

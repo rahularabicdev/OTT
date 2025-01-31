@@ -61,7 +61,7 @@ const Header = () => {
 
           {/* Link */}
           <Link
-            href="/login"
+            href="/register"
             className="text-sm text-primary hover:text-light transition duration-500"
           >
             Get Started

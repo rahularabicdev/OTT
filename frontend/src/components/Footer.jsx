@@ -39,7 +39,7 @@ const about_links = [
     link: "/privacy",
   },
   {
-    title: "only on Spectraflix",
+    title: "Only on Spectraflix",
     link: "/only-on-spectraflix",
   },
 ];
@@ -86,7 +86,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="section">
+    <footer className="section-lg">
       <div className="container">
         <div className="grid grid-cols-4 gap-5">
           <div className="col">

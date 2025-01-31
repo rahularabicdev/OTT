@@ -11,6 +11,9 @@
   .section {
     @apply py-12;
   }
+  .section-lg {
+    @apply py-20;
+  }
 
   .heading {
     @apply text-4xl text-light font-semibold capitalize;

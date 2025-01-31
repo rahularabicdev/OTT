@@ -3,4 +3,6 @@ import Header from "./Header";
 import MovieCard from "./MovieCard";
 import SwiperSlider from "./SwiperSlider";
 
-export { Header, MovieCard, SwiperSlider, Footer };
+import FormInput from "./form/Input";
+
+export { Header, MovieCard, SwiperSlider, Footer, FormInput };
