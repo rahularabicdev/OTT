@@ -1,6 +1,7 @@
 import {
   HeroSection,
   PopularSeriesSection,
+  FeaturesSection,
   TrendingSection,
   TrendingTvSection,
 } from "@/sections/marketing";
@@ -12,6 +13,7 @@ const Home = () => {
       <TrendingSection />
       <PopularSeriesSection />
       <TrendingTvSection />
+      <FeaturesSection />
     </>
   );
 };
