@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
 
-import { Header } from "@/components";
+import { Footer, Header } from "@/components";
 import "@/static/css/tailwind.config.css";
 
 const poppins = Poppins({
@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.variable} bg-dark text-lightAlt antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
