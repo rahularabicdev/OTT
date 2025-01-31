@@ -156,7 +156,17 @@ const Footer = () => {
 
         <hr className="bg-darkAlt h-[1px] my-7" />
 
-        <p>&copy; {year} Arabic IT Media. All Rights Reserved.</p>
+        <p className="text-sm text-lightAlt text-center">
+          &copy; {year}{" "}
+          <Link
+            href="https://arabicitmedia.com/"
+            target="_blank"
+            className="text-light transition duration-500 hover:text-primary"
+          >
+            Arabic IT Media Pvt Ltd
+          </Link>
+          . All Rights Reserved.
+        </p>
       </div>
     </footer>
   );
