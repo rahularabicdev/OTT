@@ -3,11 +3,15 @@
 import Link from "next/link";
 import axios from "axios";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
 import { loginSchema } from "@/schemas";
 import { FormInput } from "@/components";
+import { login, setAuthError } from "@/store/slices/authSlice";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
   const onSubmit = async (values, { setErrors, setSubmitting }) => {
     try {
       const response = await axios.post(
@@ -19,21 +23,36 @@ const LoginForm = () => {
         }
       );
 
-      console.log(response);
+      console.log(response.data);
+
+      const token = response.data.data.accessToken;
+      dispatch(
+        login({
+          error: null,
+          user: response.data.data.user,
+          token,
+          tokenExpiration: response.data.tokenExpiration,
+        })
+      );
+      localStorage.setItem("authToken", token);
+      return token;
     } catch (error) {
       setSubmitting(false);
       if (error.response) {
         const apiError = error.response.data.message || "An error occured";
         setErrors({ apiError });
+        dispatch(setAuthError(apiError));
       } else if (error.request) {
         const apiError =
           error.response.data.message || "No response from server";
         setErrors({ apiError });
+        dispatch(setAuthError(apiError));
       } else {
         const apiError =
           error.response.data.message ||
           "An error occurred while making the request";
         setErrors({ apiError });
+        dispatch(setAuthError(apiError));
       }
     }
   };
@@ -83,7 +102,17 @@ const LoginForm = () => {
                   error={errors.password && touched.password}
                 />
               </div>
-              <button className="button w-full" disabled={isSubmitting}>
+              {errors.apiError && (
+                <span className="block text-sm text-red-500 mb-4">
+                  {errors.apiError}
+                </span>
+              )}
+
+              <button
+                type="submit"
+                className="button w-full"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Submitting" : "Login"}
               </button>
               <p className="mt-5">

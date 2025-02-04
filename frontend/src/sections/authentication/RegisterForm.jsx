@@ -127,6 +127,12 @@ const RegisterForm = () => {
                   error={errors.password2 && touched.password2}
                 />
               </div>
+              {errors.apiError && (
+                <span className="block text-sm text-red-500 mb-4">
+                  {errors.apiError}
+                </span>
+              )}
+
               <button
                 type="submit"
                 className="button w-full"
