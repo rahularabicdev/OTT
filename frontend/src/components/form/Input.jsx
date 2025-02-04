@@ -1,7 +1,7 @@
 const Input = ({ label, type, name, required, error, className, ...props }) => {
   return (
     <>
-      <div className={`block mb-5 ${className}`}>
+      <div className={`block ${className}`}>
         <label className="block text-sm text-light mb-1" htmlFor={name}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
