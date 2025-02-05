@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
 import { Logo } from "@/static/images";
+import HeaderAuthentication from "./HeaderAuthentication";
 
 const Header = () => {
   const pathname = usePathname();
@@ -59,13 +60,7 @@ const Header = () => {
             placeholder="Search movies"
           />
 
-          {/* Link */}
-          <Link
-            href="/register"
-            className="text-sm text-primary hover:text-light transition duration-500"
-          >
-            Get Started
-          </Link>
+          <HeaderAuthentication />
         </div>
       </div>
     </header>
