@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
 
-import { Footer, Header } from "@/components";
+import { Footer, Header, AuthProvider } from "@/components";
 import Providers from "./provider";
 import "@/static/css/tailwind.config.css";
 
@@ -20,9 +20,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${poppins.variable} bg-dark text-lightAlt antialiased`}>
         <Providers>
-          <Header />
-          {children}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {children}
+            <Footer />
+          </AuthProvider>
         </Providers>
       </body>
     </html>
