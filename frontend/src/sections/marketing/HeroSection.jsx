@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 import { Hero } from "@/static/images";
-import Link from "next/link";
 
 const HeroSection = () => {
+  const auth = useSelector((state) => state.auth);
+
   return (
     <section
       className={`relative w-full min-h-screen h-auto flex justify-center py-10`}
@@ -15,7 +20,10 @@ const HeroSection = () => {
         <h3 className="text-light text-2xl font-medium mb-8">
           Unlimited Movies, TV Shows and more.
         </h3>
-        <Link href="/register" className="button">
+        <Link
+          href={auth.isAuthenticated ? "/profile" : "/login"}
+          className="button"
+        >
           Get Started
         </Link>
       </div>

@@ -21,6 +21,8 @@ const useAuthCheck = () => {
       // Get tokens
       const storedToken = localStorage.getItem("authToken");
 
+      if (!storedToken) return false;
+
       try {
         // Fetch user profile
         const response = await axios.get(
@@ -41,7 +43,7 @@ const useAuthCheck = () => {
             user: response.data.data,
             isAuthenticated: true,
             token: storedToken,
-            tokenExpiration: null, // Update if needed
+            tokenExpiration: null,
           })
         );
       } catch (error) {
