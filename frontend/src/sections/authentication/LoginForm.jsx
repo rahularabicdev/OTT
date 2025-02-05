@@ -30,6 +30,7 @@ const LoginForm = () => {
         login({
           error: null,
           user: response.data.data.user,
+          isAuthenticated: true,
           token,
           tokenExpiration: response.data.tokenExpiration,
         })

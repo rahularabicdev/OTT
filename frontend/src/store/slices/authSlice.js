@@ -16,6 +16,7 @@ const initialState = {
     preferences: [],
     likedVideos: [],
     lastLogin: "",
+    role: null,
   },
   loading: false,
   error: null,

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  fetchUserProfileController,
   forgotPasswordController,
   forgotPasswordRequestController,
   loginController,
@@ -18,6 +19,8 @@ const router = Router();
 // const coverImageUpload = uploadMiddleware("cover-image");
 
 // Routes
+router.route("/get-user-profile").get(verifyUser, fetchUserProfileController);
+
 router.route("/register").post(registerController);
 router.route("/login").post(loginController);
 router.route("/logout").post(verifyUser, logoutController);

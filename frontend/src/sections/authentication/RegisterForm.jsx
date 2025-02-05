@@ -3,36 +3,54 @@
 import Link from "next/link";
 import axios from "axios";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 
 import { registerSchema } from "@/schemas";
 import { FormInput } from "@/components";
+import { login, setAuthError } from "@/store/slices/authSlice";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const onSubmit = async (values, { setErrors, setSubmitting }) => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/register`,
         values,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
 
       console.log(response);
+
+      const token = response.data.data.accessToken;
+      dispatch(
+        login({
+          error: null,
+          user: response.data.data.user,
+          isAuthenticated: true,
+          token,
+          tokenExpiration: response.data.tokenExpiration,
+        })
+      );
+      localStorage.setItem("authToken", token);
+      return token;
     } catch (error) {
       setSubmitting(false);
       if (error.response) {
         const apiError = error.response.data.message || "An error occurred";
         setErrors({ apiError });
+        dispatch(setAuthError(apiError));
       } else if (error.request) {
         const apiError = "No response from server";
         setErrors({ apiError });
+        dispatch(setAuthError(apiError));
       } else {
         const apiError = "An error occurred while making the request";
         setErrors({ apiError });
+        dispatch(setAuthError(apiError));
       }
     }
   };
