@@ -57,3 +57,18 @@ export const changePasswordSchema = yup.object().shape({
     .matches(passwordRules, { message: "Please enter a valid password" })
     .required("Please Confirm Password"),
 });
+
+// Profile Update Schema Validation
+export const profileUpdateSchema = yup.object().shape({
+  firstName: yup.string().required("Please enter First Name"),
+  lastName: yup.string().nullable(),
+  email: yup
+    .string()
+    .email("Please enter a valid email")
+    .required("Please enter Email Address"),
+  phoneNumber: yup
+    .string()
+    .matches(/^[0-9]{10}$/, "Please enter a valid 10-digit phone number")
+    .required("Please enter Phone Number"),
+  dateOfBirth: yup.date().nullable(),
+});
