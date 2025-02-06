@@ -388,3 +388,68 @@ export const resetPasswordController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, {}, "Password updated successfully!"));
 });
+
+// Update User Profile Controller
+export const updateProfileController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get data from frontend
+   * TODO: Validate data
+   * TODO: Update user profile
+   * TODO: Send Response with user profile
+   * **/
+
+  // * Get data from frontend
+  const { firstName, lastName, email, phoneNumber, dateOfBirth } = req.body;
+
+  // * Validate data
+  notEmptyValidation([firstName, email, phoneNumber]);
+  emailValidation(email);
+  phoneNumberValidation(phoneNumber);
+
+  try {
+    // * Find the user by ID
+    const user = await User.findById(req.user._id);
+
+    // Check if the email has changed
+    if (email !== req.user.email) {
+      // * Check if the new email already exists in the database
+      const existingEmailUser = await User.findOne({ email });
+
+      if (existingEmailUser) {
+        return res
+          .status(400)
+          .json(new ApiResponse(400, null, "Email already exists"));
+      }
+    }
+
+    // Check if the phone number has changed
+    if (phoneNumber !== req.user.phoneNumber) {
+      // * Check if the new phone number already exists in the database
+      const existingPhoneNumber = await User.findOne({ phoneNumber });
+
+      if (existingPhoneNumber) {
+        return res
+          .status(400)
+          .json(new ApiResponse(400, null, "Phone Number already exists"));
+      }
+    }
+
+    // * Update user profile
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.email = email;
+    user.phoneNumber = phoneNumber;
+    user.dateOfBirth = dateOfBirth;
+    await user.save();
+
+    // * Updated User
+    const updatedUser = await User.findById(user._id);
+
+    // * Sending Response
+    return res
+      .status(200)
+      .json(new ApiResponse(200, updatedUser, "User updated successfully!"));
+  } catch (error) {
+    throw new ApiError(500, `Server Error : ${error.message}`);
+  }
+});

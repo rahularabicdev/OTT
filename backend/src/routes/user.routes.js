@@ -8,6 +8,7 @@ import {
   refreshAccessTokenController,
   registerController,
   resetPasswordController,
+  updateProfileController,
 } from "../controllers/user.controllers.js";
 import uploadMiddleware from "../middlewares/multer.middlewares.js";
 import { isUserVerified, verifyUser } from "../middlewares/auth.middlewares.js";
@@ -15,8 +16,7 @@ import { isUserVerified, verifyUser } from "../middlewares/auth.middlewares.js";
 const router = Router();
 
 // Upload folders
-// const avatarUpload = uploadMiddleware("avatar");
-// const coverImageUpload = uploadMiddleware("cover-image");
+const avatarUpload = uploadMiddleware("avatar");
 
 // Routes
 router.route("/get-user-profile").get(verifyUser, fetchUserProfileController);
@@ -30,5 +30,7 @@ router.route("/refresh-access-token").post(refreshAccessTokenController);
 router.route("/forgot-password").post(forgotPasswordController);
 router.route("/forgot-password-request").patch(forgotPasswordRequestController);
 router.route("/reset-password").patch(verifyUser, resetPasswordController);
+
+router.route("/update-profile").patch(verifyUser, updateProfileController);
 
 export default router;
