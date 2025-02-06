@@ -82,86 +82,77 @@ const ProfileUpdate = () => {
 
   return (
     <>
-      <section className="section"></section>
-      <section className="section">
-        <div className="container">
-          <h3 className="heading mb-10">Update Profile</h3>
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-7 mb-7">
-              <FormInput
-                label="Email"
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.email && touched.email}
-              />
-              <FormInput
-                label="Phone Number"
-                type="tel"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                value={values.phoneNumber}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.phoneNumber && touched.phoneNumber}
-              />
-              <FormInput
-                label="First Name"
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={values.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.firstName && touched.firstName}
-              />
-              <FormInput
-                label="Last Name"
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={values.lastName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.lastName && touched.lastName}
-              />
-              <FormInput
-                label="Date Of Birth"
-                type="date"
-                name="dateOfBirth"
-                placeholder="Date Of Birth"
-                value={values.dateOfBirth}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={errors.dateOfBirth && touched.dateOfBirth}
-              />
-            </div>
-
-            {errors.apiError && (
-              <span className="block text-sm text-red-500 mb-4">
-                {errors.apiError}
-              </span>
-            )}
-
-            {isUpdated && (
-              <div className="text-md text-primary mb-4">
-                Profile updated successfully!
-              </div>
-            )}
-
-            <button
-              type="submit"
-              className="button w-full"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting" : "Update"}
-            </button>
-          </form>
+      <h3 className="heading mb-10">Update Profile</h3>
+      <form onSubmit={handleSubmit}>
+        <div className="grid grid-cols-2 gap-7 mb-7">
+          <FormInput
+            label="Email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.email && touched.email}
+          />
+          <FormInput
+            label="Phone Number"
+            type="tel"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            value={values.phoneNumber}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.phoneNumber && touched.phoneNumber}
+          />
+          <FormInput
+            label="First Name"
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={values.firstName}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.firstName && touched.firstName}
+          />
+          <FormInput
+            label="Last Name"
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={values.lastName}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.lastName && touched.lastName}
+          />
+          <FormInput
+            label="Date Of Birth"
+            type="date"
+            name="dateOfBirth"
+            placeholder="Date Of Birth"
+            value={values.dateOfBirth}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={errors.dateOfBirth && touched.dateOfBirth}
+          />
         </div>
-      </section>
+
+        {errors.apiError && (
+          <span className="block text-sm text-red-500 mb-4">
+            {errors.apiError}
+          </span>
+        )}
+
+        {isUpdated && (
+          <div className="text-md text-primary mb-4">
+            Profile updated successfully!
+          </div>
+        )}
+
+        <button type="submit" className="button w-full" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting" : "Update"}
+        </button>
+      </form>
     </>
   );
 };
