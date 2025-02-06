@@ -38,3 +38,22 @@ export const loginSchema = yup.object().shape({
     .matches(passwordRules, { message: "Please enter a valid password" })
     .required("Please enter Password"),
 });
+
+// Change Password Validation
+export const changePasswordSchema = yup.object().shape({
+  oldPassword: yup
+    .string()
+    .min(6)
+    .matches(passwordRules, { message: "Please enter a valid password" })
+    .required("Please enter Old Password"),
+  password: yup
+    .string()
+    .min(6)
+    .matches(passwordRules, { message: "Please enter a valid password" })
+    .required("Please enter New Password"),
+  password2: yup
+    .string()
+    .min(6)
+    .matches(passwordRules, { message: "Please enter a valid password" })
+    .required("Please Confirm Password"),
+});

@@ -23,8 +23,6 @@ const RegisterForm = () => {
         }
       );
 
-      console.log(response);
-
       const token = response.data.data.accessToken;
       dispatch(
         login({
