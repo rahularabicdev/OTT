@@ -4,6 +4,7 @@ import FeaturesSection from "./FeaturesSection";
 import TrendingSection from "./TrendingSection";
 import TrendingTvSection from "./TrendingTvSection";
 import FAQSection from "./FAQSection";
+import HelpCenterSection from "./HelpCenterSection";
 
 export {
   HeroSection,
@@ -12,4 +13,5 @@ export {
   TrendingTvSection,
   FeaturesSection,
   FAQSection,
+  HelpCenterSection,
 };
