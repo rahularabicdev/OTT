@@ -11,6 +11,7 @@ const initialState = {
     avatar: "",
     dateOfBirth: "",
     role: "",
+    avatar: "",
     is_verified: false,
     watchList: [],
     preferences: [],

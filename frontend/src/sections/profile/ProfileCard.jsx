@@ -18,7 +18,7 @@ const ProfileCard = ({ user }) => {
                 <div className="p-5">
                   <div className="flex items-center justify-start gap-5">
                     <Image
-                      src={user.avatar || DummyUser}
+                      src={DummyUser}
                       alt={user.firstName}
                       width="100"
                       height="100"

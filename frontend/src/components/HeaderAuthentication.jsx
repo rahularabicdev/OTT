@@ -98,7 +98,7 @@ const HeaderAuthentication = () => {
             </p>
             <div className="text-center mb-4">
               <Image
-                src={auth.user.avatar || DummyUser}
+                src={DummyUser}
                 alt={auth.user.firstName}
                 width="60"
                 height="60"
