@@ -2,6 +2,7 @@
 
 import { useSelector } from "react-redux";
 import { redirect } from "next/navigation";
+import { ProfileCard } from "@/sections/profile";
 
 const ProfilePage = () => {
   const auth = useSelector((state) => state.auth);
@@ -9,12 +10,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <section className="section"></section>
-      <section className="section">
-        <div className="container">
-          <h1 className="heading">{auth.user.firstName}</h1>
-        </div>
-      </section>
+      <ProfileCard user={auth.user} />
     </>
   );
 };
