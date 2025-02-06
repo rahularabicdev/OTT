@@ -8,6 +8,7 @@ import {
   refreshAccessTokenController,
   registerController,
   resetPasswordController,
+  updateAvatarController,
   updateProfileController,
 } from "../controllers/user.controllers.js";
 import uploadMiddleware from "../middlewares/multer.middlewares.js";
@@ -32,5 +33,8 @@ router.route("/forgot-password-request").patch(forgotPasswordRequestController);
 router.route("/reset-password").patch(verifyUser, resetPasswordController);
 
 router.route("/update-profile").patch(verifyUser, updateProfileController);
+router
+  .route("/update-avatar")
+  .patch(verifyUser, avatarUpload, updateAvatarController);
 
 export default router;
