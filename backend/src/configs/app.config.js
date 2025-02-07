@@ -1,9 +1,15 @@
 import express from "express";
+import path from "path";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { fileURLToPath } from "url";
+
 import userRoutes from "../routes/user.routes.js";
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // CORS Options
 const corsOptions = {
@@ -19,6 +25,7 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(cookieParser());
 app.use(express.static("public"));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 // Options
 app.options("*", cors(corsOptions));

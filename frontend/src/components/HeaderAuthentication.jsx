@@ -16,6 +16,12 @@ const HeaderAuthentication = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
   const auth = useSelector((state) => state.auth);
 
+  const avatarUrl = auth.user.avatar
+    ? `http://localhost:8000/${auth.user.avatar
+        .replace(/\\/g, "/")
+        .replace("public/", "")}`
+    : DummyUser;
+
   const handleLogout = async () => {
     try {
       await axios.post(
@@ -98,7 +104,7 @@ const HeaderAuthentication = () => {
             </p>
             <div className="text-center mb-4">
               <Image
-                src={DummyUser}
+                src={avatarUrl}
                 alt={auth.user.firstName}
                 width="60"
                 height="60"

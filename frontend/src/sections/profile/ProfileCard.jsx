@@ -7,6 +7,14 @@ import { IoMailOutline, IoPhonePortraitOutline } from "react-icons/io5";
 import { DummyUser } from "@/static/images";
 
 const ProfileCard = ({ user }) => {
+  const avatarUrl = user.avatar
+    ? `http://localhost:8000/${user.avatar
+        .replace(/\\/g, "/")
+        .replace("public/", "")}`
+    : DummyUser;
+
+  console.log(avatarUrl);
+
   return (
     <>
       <section className="section"></section>
@@ -18,7 +26,7 @@ const ProfileCard = ({ user }) => {
                 <div className="p-5">
                   <div className="flex items-center justify-start gap-5">
                     <Image
-                      src={DummyUser}
+                      src={avatarUrl}
                       alt={user.firstName}
                       width="100"
                       height="100"

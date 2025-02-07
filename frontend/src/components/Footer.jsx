@@ -28,7 +28,7 @@ const question_links = [
 const about_links = [
   {
     title: "Account",
-    link: "/account",
+    link: "/profile",
   },
   {
     title: "Way to Watch",
