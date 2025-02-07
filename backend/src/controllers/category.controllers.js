@@ -18,3 +18,26 @@ export const fetchCategoriesController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, categories, "Fetched Categories Successfully!"));
 });
+
+// Fetch Single Category Controller
+export const fetchSingleCategoryController = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+
+  /**
+   * TODO: Get Single Category
+   * TODO: Send Response
+   * **/
+
+  // * Get Single Category
+  const category = await Category.findById(_id);
+
+  // * Check if Category exists
+  if (!category) {
+    throw new ApiError(404, "Category not found");
+  }
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, category, "Fetched Category Successfully!"));
+});

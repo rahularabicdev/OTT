@@ -137,9 +137,9 @@ export const loginController = asyncHandler(async (req, res) => {
   }
 
   // * Check if role is "user"
-  // if (!user.role || user.role.name !== "user") {
-  //   throw new ApiError(403, "Access Denied: Only users can log in.");
-  // }
+  if (!user.role || user.role.name !== "user") {
+    throw new ApiError(403, "Access Denied: Only users can log in.");
+  }
 
   // * Check Password
   const passwordCheck = await user.isPasswordCorrect(password);
