@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 import userRoutes from "../routes/user.routes.js";
 import categoryRoutes from "../routes/category.routes.js";
+import adminRoutes from "../routes/admin.routes.js";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.options("*", cors(corsOptions));
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Test Route
 app.get("/api", (req, res) => {
