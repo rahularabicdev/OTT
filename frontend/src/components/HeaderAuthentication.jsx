@@ -16,7 +16,7 @@ const HeaderAuthentication = () => {
   const [dropdownActive, setDropdownActive] = useState(false);
   const auth = useSelector((state) => state.auth);
 
-  const avatarUrl = auth.user.avatar
+  const avatarUrl = auth?.user?.avatar
     ? `http://localhost:8000/${auth.user.avatar
         .replace(/\\/g, "/")
         .replace("public/", "")}`

@@ -14,6 +14,7 @@ const RegisterForm = () => {
 
   const onSubmit = async (values, { setErrors, setSubmitting }) => {
     try {
+      setSubmitting(true);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/register`,
         values,
@@ -27,7 +28,7 @@ const RegisterForm = () => {
       dispatch(
         login({
           error: null,
-          user: response.data.data.user,
+          user: response.data.data,
           isAuthenticated: true,
           token,
           tokenExpiration: response.data.tokenExpiration,

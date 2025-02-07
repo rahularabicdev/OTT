@@ -12,7 +12,7 @@ import {
   updateProfileController,
 } from "../controllers/user.controllers.js";
 import uploadMiddleware from "../middlewares/multer.middlewares.js";
-import { isUserVerified, verifyUser } from "../middlewares/auth.middlewares.js";
+import { verifyUser } from "../middlewares/auth.middlewares.js";
 
 const router = Router();
 

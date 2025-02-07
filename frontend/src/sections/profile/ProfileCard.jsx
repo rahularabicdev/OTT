@@ -7,7 +7,7 @@ import { IoMailOutline, IoPhonePortraitOutline } from "react-icons/io5";
 import { DummyUser } from "@/static/images";
 
 const ProfileCard = ({ user }) => {
-  const avatarUrl = user.avatar
+  const avatarUrl = user?.avatar
     ? `http://localhost:8000/${user.avatar
         .replace(/\\/g, "/")
         .replace("public/", "")}`

@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
+      default: "public/avatar/user-default.webp",
     },
     dateOfBirth: {
       type: Date,
