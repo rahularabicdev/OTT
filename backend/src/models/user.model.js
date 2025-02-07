@@ -89,7 +89,7 @@ const UserSchema = new mongoose.Schema(
     likedVideos: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Videos",
+        ref: "Video",
         default: [],
       },
     ],

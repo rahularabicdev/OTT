@@ -146,7 +146,6 @@ dist*
 **/*.back.*
 
 node_modules
-extras
 
 *.sublime*
 
