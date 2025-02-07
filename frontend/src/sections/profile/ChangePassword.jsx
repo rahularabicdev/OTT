@@ -21,7 +21,6 @@ const ChangePassword = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
 
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/logout`,

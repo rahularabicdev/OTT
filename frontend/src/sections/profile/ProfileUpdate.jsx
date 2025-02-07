@@ -4,18 +4,17 @@ import axios from "axios";
 import { useState } from "react";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { FormInput } from "@/components";
 import { profileUpdateSchema } from "@/schemas";
 import { updateProfile, setAuthError } from "@/store/slices/authSlice";
 
-const ProfileUpdate = () => {
+const ProfileUpdate = ({ auth }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const [isUpdated, setIsUpdated] = useState(false);
-  const auth = useSelector((state) => state.auth.user);
 
   const sanitizeInput = (value) => (typeof value === "string" ? value : "");
 

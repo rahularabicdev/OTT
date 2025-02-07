@@ -13,8 +13,6 @@ const ProfileCard = ({ user }) => {
         .replace("public/", "")}`
     : DummyUser;
 
-  console.log(avatarUrl);
-
   return (
     <>
       <section className="section"></section>

@@ -1,6 +1,12 @@
+"use client";
+
+import { useSelector } from "react-redux";
+
 import { AvatarUpdate, ProfileUpdate } from "@/sections/profile";
 
 const UpdateProfilePage = () => {
+  const auth = useSelector((state) => state.auth.user);
+
   return (
     <>
       <section className="section"></section>
@@ -8,10 +14,10 @@ const UpdateProfilePage = () => {
         <div className="container">
           <div className="grid grid-cols-12 gap-10">
             <div className="col-span-8">
-              <ProfileUpdate />
+              <ProfileUpdate auth={auth} />
             </div>
             <div className="col-span-4">
-              <AvatarUpdate />
+              <AvatarUpdate auth={auth} />
             </div>
           </div>
         </div>
