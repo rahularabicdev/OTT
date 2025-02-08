@@ -10,3 +10,6 @@ const asyncHandler = (fn) => async (req, res, next) => {
 };
 
 export default asyncHandler;
+// Create Cast Controller
+
+export const createCastController = asyncHandler(async (req, res) => {});
