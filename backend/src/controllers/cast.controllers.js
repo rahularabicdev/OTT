@@ -4,6 +4,7 @@ import Cast from "../models/cast.model.js";
 import ApiError from "../utils/apiError.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/apiResponse.js";
+import { notEmptyValidation } from "../utils/validators.js";
 
 // Fetch All Casts Controller
 export const fetchCastsController = asyncHandler(async (req, res) => {
@@ -47,4 +48,30 @@ export const fetchCastDetailController = asyncHandler(async (req, res) => {
   res
     .status(200)
     .json(new ApiResponse(200, cast, "Fetched Cast Details Successfully!"));
+});
+
+// Create Cast Controller
+export const createCastController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get data from frontend
+   * TODO: Validate data
+   * TODO: Create new Cast
+   * TODO: Sending Response
+   * **/
+
+  // * Get data from frontend
+  const { name } = req.body;
+  const cast_avatar = req.file?.path;
+
+  // * Validate Input
+  notEmptyValidation([name]);
+
+  // * Create new Cast
+  const cast = new Cast({ name, cast_avatar });
+  await cast.save();
+
+  // * Sending Response
+  res
+    .status(201)
+    .json(new ApiResponse(201, cast, "Created Cast Successfully!"));
 });

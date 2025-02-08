@@ -6,7 +6,7 @@ const CastSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    avatar: {
+    cast_avatar: {
       type: String,
       default: "public/avatar/user-default.webp",
     },
