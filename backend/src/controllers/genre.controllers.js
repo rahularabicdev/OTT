@@ -122,3 +122,27 @@ export const updateGenreController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, genre, "Genre updated successfully!"));
 });
+
+// Delete Genre Controller
+export const deleteGenreController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Id from Params
+   * TODO: Delete Category
+   * TODO: Send Response
+   **/
+
+  // * Get Id from Params
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid genre ID");
+  }
+
+  // * Delete Genre
+  await Genre.findByIdAndDelete(id);
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, null, "Genre deleted successfully!"));
+});
