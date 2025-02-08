@@ -5,12 +5,12 @@ const WayToWatch = () => {
       <section className="section">
         <div className="container">
           <h4 className="heading mb-4">
-            Watch Netflix on your TV, phone, or computer
+            Watch Spectraflix on your TV, phone, or computer
           </h4>
           <p className="mb-3">
-            You can watch Netflix on any supported smart TV, phone, tablet,
+            You can watch Spectraflix on any supported smart TV, phone, tablet,
             streaming player, or game console that connects to the internet and
-            offers the Netflix app, or at netflix.com using a computer.
+            offers the Spectraflix app, or at Spectraflix.com using a computer.
           </p>
 
           <hr className="bg-darkAlt h-[1px] my-7" />
@@ -18,8 +18,8 @@ const WayToWatch = () => {
           <h4 className="heading mb-4">TVs and TV streaming devices</h4>
           <p className="mb-3">
             Many TVs, TV streaming devices, and media players come with the
-            Netflix app included. To get started, use the links below to learn
-            how to get Netflix on your device.
+            Spectraflix app included. To get started, use the links below to
+            learn how to get Spectraflix on your device.
           </p>
           <ul className="mb-4">
             <li className="mb-1 list-disc list-inside">
@@ -35,8 +35,8 @@ const WayToWatch = () => {
             <li className="mb-1 list-disc list-inside">Sony</li>
           </ul>
           <p className="mb-3">
-            Note:Netflix may no longer be available on some TVs and TV streaming
-            devices made before 2015.
+            Note:Spectraflix may no longer be available on some TVs and TV
+            streaming devices made before 2015.
           </p>
           <p className="mb-3">
             Not seeing your device? Search for your device's name or
@@ -49,9 +49,9 @@ const WayToWatch = () => {
 
           <h4 className="heading mb-4">Mobile phones and tablets</h4>
           <p className="mb-3">
-            You can watch Netflix on any supported mobile phone or tablet. To
-            get started, use the links below to see specific requirements and
-            learn how to get the Netflix app on your device.
+            You can watch Spectraflix on any supported mobile phone or tablet.
+            To get started, use the links below to see specific requirements and
+            learn how to get the Spectraflix app on your device.
           </p>
           <ul>
             <li className="mb-1 list-disc list-inside">
@@ -66,9 +66,9 @@ const WayToWatch = () => {
 
           <h4 className="heading mb-4">Computers</h4>
           <p className="mb-3">
-            You can watch Netflix on Mac, Windows, or Chromebook computers. To
-            get started, go to netflix.com using a supported web browser, or get
-            the Netflix app for Windows.
+            You can watch Spectraflix on Mac, Windows, or Chromebook computers.
+            To get started, go to Spectraflix.com using a supported web browser,
+            or get the Spectraflix app for Windows.
           </p>
           <p className="mb-3">
             Note:For issues getting started, make sure your computer and browser
@@ -79,11 +79,11 @@ const WayToWatch = () => {
 
           <h4 className="heading mb-4">Cable boxes</h4>
           <p className="mb-3">
-            Many internet, cable, and pay TV providers include the Netflix app
-            on their devices. To get started, search the name of your provider
-            in our Help Center to check if Netflix is available on your device.
-            To learn more about device support,contact us or the company that
-            provided your device.
+            Many internet, cable, and pay TV providers include the Spectraflix
+            app on their devices. To get started, search the name of your
+            provider in our Help Center to check if Spectraflix is available on
+            your device. To learn more about device support,contact us or the
+            company that provided your device.
           </p>
 
           <hr className="bg-darkAlt h-[1px] my-7" />
@@ -92,9 +92,9 @@ const WayToWatch = () => {
             Video game consoles and AR/VR devices
           </h4>
           <p className="mb-3">
-            You can watch Netflix on these popular video game consoles and AR/VR
-            devices. To get started, use the links below to learn how to get
-            Netflix on your game console.
+            You can watch Spectraflix on these popular video game consoles and
+            AR/VR devices. To get started, use the links below to learn how to
+            get Spectraflix on your game console.
           </p>
           <ul>
             <li className="mb-1 list-disc list-inside">
