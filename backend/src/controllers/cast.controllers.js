@@ -114,3 +114,27 @@ export const updateCastController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, cast, "Updated Cast Successfully!"));
 });
+
+// Delete Cast Controller
+export const deleteCastController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Id from Params
+   * TODO: Delete Cast
+   * TODO: Send Response
+   **/
+
+  // * Get Id from Params
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid cast ID");
+  }
+
+  // * Delete Cast
+  await Cast.findByIdAndDelete(id);
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, null, "Deleted Cast Successfully!"));
+});

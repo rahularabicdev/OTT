@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createCastController,
+  deleteCastController,
   fetchCastDetailController,
   fetchCastsController,
   updateCastController,
@@ -21,5 +22,6 @@ router.route("/").post(verifyUser, isAdmin, avatarUpload, createCastController);
 router
   .route("/:id")
   .patch(verifyUser, isAdmin, avatarUpload, updateCastController);
+router.route("/:id").delete(verifyUser, isAdmin, deleteCastController);
 
 export default router;
