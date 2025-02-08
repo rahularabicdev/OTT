@@ -122,3 +122,27 @@ export const updateCategoryController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, category, "Category updated successfully!"));
 });
+
+// Delete Category Controller
+export const deleteCategoryController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Id from Params
+   * TODO: Delete Category
+   * TODO: Send Response
+   **/
+
+  // * Get Id from Params
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid category ID");
+  }
+
+  // * Delete Category
+  await Category.findByIdAndDelete(id);
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, null, "Category deleted successfully!"));
+});
