@@ -127,7 +127,7 @@ export const updateGenreController = asyncHandler(async (req, res) => {
 export const deleteGenreController = asyncHandler(async (req, res) => {
   /**
    * TODO: Get Id from Params
-   * TODO: Delete Category
+   * TODO: Delete Genre
    * TODO: Send Response
    **/
 
