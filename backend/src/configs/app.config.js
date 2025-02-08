@@ -8,6 +8,7 @@ import userRoutes from "../routes/user.routes.js";
 import genreRoutes from "../routes/genre.routes.js";
 import categoryRoutes from "../routes/category.routes.js";
 import adminRoutes from "../routes/admin.routes.js";
+import castRoutes from "../routes/cast.routes.js";
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/genres", genreRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/casts", castRoutes);
 
 // Test Route
 app.get("/api", (req, res) => {
