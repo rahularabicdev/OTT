@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 import Category from "../models/category.model.js";
 import ApiError from "../utils/apiError.js";
 import asyncHandler from "../utils/asyncHandler.js";
@@ -22,15 +24,15 @@ export const fetchCategoriesController = asyncHandler(async (req, res) => {
 
 // Fetch Category Detail Controller
 export const fetchCategoryDetailController = asyncHandler(async (req, res) => {
-  const { _id } = req.params;
+  const { id } = req.params;
 
-  /**
-   * TODO: Get Single Category
-   * TODO: Send Response
-   * **/
+  // * Validate ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid category ID");
+  }
 
   // * Get Single Category
-  const category = await Category.findById(_id);
+  const category = await Category.findById(id);
 
   // * Check if Category exists
   if (!category) {
@@ -42,6 +44,8 @@ export const fetchCategoryDetailController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, category, "Fetched Category Successfully!"));
 });
+
+// * Admin Controls
 
 // Create Category Controller
 export const createCategoryController = asyncHandler(async (req, res) => {
