@@ -7,7 +7,7 @@ import { DummyPoster } from "@/static/images";
 const MovieCard = ({ item }) => {
   return (
     <>
-      <div className="rounded-lg overflow-hidden group cursor-pointer">
+      <div className="relative rounded-lg overflow-hidden group cursor-pointer">
         <div className="absolute z-20 h-full w-full flex flex-col justify-end bg-[linear-gradient(to_top,#0c0c0c,#0c0c0cd4,transparent)] p-5 transition duration-500 translate-y-full group-hover:translate-y-0">
           <h5 className="block w-11/12 mb-1 text-lg font-semibold whitespace-nowrap overflow-hidden text-ellipsis text-light">
             {item.title}
