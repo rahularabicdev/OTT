@@ -1,8 +1,10 @@
 "use client";
 
 import axios from "axios";
+import { useEffect } from "react";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 import { loginSchema } from "@/schemas";
 import { FormInput } from "@/components";
@@ -10,6 +12,14 @@ import { login, setAuthError } from "@/store/slices/authSlice";
 
 const AdminLoginPage = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const auth = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (auth.isAuthenticated && auth.isAdmin) {
+      router.replace("/dashboard");
+    }
+  }, [auth, router]);
 
   const onSubmit = async (values, { setErrors, setSubmitting }) => {
     try {
@@ -21,8 +31,6 @@ const AdminLoginPage = () => {
           withCredentials: true,
         }
       );
-
-      console.log(response.data.data.isAdmin);
 
       const token = response.data.data.accessToken;
       dispatch(

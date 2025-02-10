@@ -1,4 +1,5 @@
 import AuthProvider from "./AuthProvider";
+import DashboardAuthGuard from "./DashboardAuthGuard";
 
 import Footer from "./Footer";
 import Header from "./Header";
@@ -16,4 +17,5 @@ export {
   FormInput,
   FormTextarea,
   AuthProvider,
+  DashboardAuthGuard,
 };

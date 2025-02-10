@@ -36,8 +36,6 @@ const useAuthCheck = () => {
           }
         );
 
-        console.log(response);
-
         // Update Redux store
         dispatch(
           login({
