@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 
 import { Footer, Header, AuthProvider } from "@/components";
-import Providers from "./provider";
+import Providers from "@/store/provider";
 import "@/static/css/tailwind.config.css";
 
 const poppins = Poppins({
