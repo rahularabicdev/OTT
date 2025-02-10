@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuthenticated: false,
+  isAdmin: false,
   user: {
     _id: "",
     email: "",
@@ -32,6 +33,7 @@ const authSlice = createSlice({
       state.loading = true;
       state.error = null;
       state.isAuthenticated = true;
+      state.isAdmin = action.payload.isAdmin || false;
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.tokenExpiration = action.payload.tokenExpiration;

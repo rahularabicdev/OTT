@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 import User from "../models/user.model.js";
 import UserRole from "../models/user-role.model.js";
@@ -31,10 +32,21 @@ export const fetchUserProfileController = asyncHandler(async (req, res) => {
   const requestUser = req.user;
   const user = await User.findById(requestUser._id);
 
+  const role = new mongoose.Types.ObjectId(req.user.role);
+  const adminRole = await UserRole.findOne({ name: "admin" }).lean();
+
+  const isAdmin = adminRole && role.equals(adminRole._id);
+
   // * Sending Response
   res
     .status(200)
-    .json(new ApiResponse(200, user, "Fetched User Profile Successfully!"));
+    .json(
+      new ApiResponse(
+        200,
+        { user, isAdmin },
+        "Fetched User Profile Successfully!"
+      )
+    );
 });
 
 // Register Controller

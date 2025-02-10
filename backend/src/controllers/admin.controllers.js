@@ -75,6 +75,7 @@ export const loginController = asyncHandler(async (req, res) => {
         200,
         {
           user: loggedInUser,
+          isAdmin: true,
           accessToken,
           refreshToken,
         },

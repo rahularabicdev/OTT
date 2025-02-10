@@ -36,11 +36,14 @@ const useAuthCheck = () => {
           }
         );
 
+        console.log(response);
+
         // Update Redux store
         dispatch(
           login({
             error: null,
-            user: response.data.data,
+            user: response.data.data.user,
+            isAdmin: response.data.data.isAdmin,
             isAuthenticated: true,
             token: storedToken,
             tokenExpiration: null,
