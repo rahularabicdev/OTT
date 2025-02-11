@@ -49,6 +49,17 @@ const Header = () => {
                 Latest Releases
               </Link>
             </li>
+            <li>
+              <Link
+                href="/category"
+                className={twMerge(
+                  "text-lightAlt transition-all duration-500 hover:text-light",
+                  pathname.startsWith("/category") && "text-light"
+                )}
+              >
+                Category
+              </Link>
+            </li>
           </ul>
         </div>
 
