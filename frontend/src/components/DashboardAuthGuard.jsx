@@ -2,24 +2,25 @@
 
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const DashboardAuthGuard = ({ children }) => {
   const auth = useSelector((state) => state.auth);
   const router = useRouter();
+  const pathname = usePathname();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (auth.isAuthenticated === undefined) {
-      return;
-    }
-
     if (!auth.isAuthenticated || !auth.isAdmin) {
-      router.replace("/dashboard/login");
+      if (pathname !== "/dashboard/login") {
+        router.replace("/dashboard/login");
+      } else {
+        setLoading(false);
+      }
     } else {
       setLoading(false);
     }
-  }, [auth, router]);
+  }, [auth, router, pathname]);
 
   if (loading) return null;
 
