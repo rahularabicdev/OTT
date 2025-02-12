@@ -30,15 +30,10 @@ export const fetchCategoryDetailController = asyncHandler(async (req, res) => {
    * TODO: Sending Response
    * **/
 
-  const { id } = req.params;
-
-  // * Validate ObjectId
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    throw new ApiError(400, "Invalid category ID");
-  }
+  const { slug } = req.params;
 
   // * Get Single Category
-  const category = await Category.findById(id);
+  const category = await Category.findOne({ slug });
 
   // * Check if Category exists
   if (!category) {

@@ -1,11 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { FaChevronDown } from "react-icons/fa6";
-
-import { FAQ } from "@/static/images";
 
 const accordion_data = [
   {

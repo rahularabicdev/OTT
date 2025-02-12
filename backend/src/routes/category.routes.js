@@ -12,7 +12,7 @@ const router = Router();
 
 // Routes
 router.route("/all").get(fetchCategoriesController);
-router.route("/:id").get(fetchCategoryDetailController);
+router.route("/:slug").get(fetchCategoryDetailController);
 
 router.route("/").post(verifyUser, isAdmin, createCategoryController);
 router.route("/:id").patch(verifyUser, isAdmin, updateCategoryController);
