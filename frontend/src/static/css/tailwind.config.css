@@ -26,4 +26,15 @@
   .button-sm {
     @apply bg-primary text-dark text-sm font-medium rounded px-2.5 py-1.5 transition duration-500 hover:bg-light flex items-center justify-center;
   }
+
+  /* Dashboard */
+  .db-main {
+    @apply h-screen w-full relative;
+  }
+  .db-sidebar {
+    @apply fixed top-0 left-0 w-[300px] h-screen p-5 bg-dark border-r border-solid border-darkAlt text-light;
+  }
+  .db-content {
+    @apply absolute top-0 left-[300px] w-[calc(100%-300px)] h-screen bg-dark text-light;
+  }
 }
