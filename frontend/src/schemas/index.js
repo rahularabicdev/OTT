@@ -72,3 +72,9 @@ export const profileUpdateSchema = yup.object().shape({
     .required("Please enter Phone Number"),
   dateOfBirth: yup.date().nullable(),
 });
+
+// Category Schema Validation
+export const categorySchema = yup.object().shape({
+  name: yup.string().required("Please enter Category Name"),
+  description: yup.string().required("Please enter Category Description"),
+});
