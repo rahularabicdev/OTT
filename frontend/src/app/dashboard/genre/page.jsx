@@ -9,42 +9,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "@/components";
 import { showAlert } from "@/store/slices/alertSlice";
 import { showModal } from "@/store/slices/modalSlice";
-import { UpdateCategoryForm } from "@/components/dashboard";
+import { UpdateGenreForm } from "@/components/dashboard";
 
-const Category = () => {
+const Genre = () => {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal);
 
-  // Fetch Category
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  // Fetch Genre
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState(null);
 
   // Handle Open Modal
-  const handleOpenModal = (categoryId) => {
-    setSelectedCategory(categoryId);
+  const handleOpenModal = (genreId) => {
+    setSelectedGenre(genreId);
     dispatch(showModal());
   };
 
-  const fetchCategories = async () => {
+  const fetchGenres = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/all`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/genres/all`
       );
-      setCategories(response.data.data);
+      setGenres(response.data.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    fetchCategories();
+    fetchGenres();
   }, [modal.visible]);
 
-  // Handle Delete Category
-  const handleDeleteCategory = async (categoryId) => {
+  // Handle Delete Genres
+  const handleDeleteGenre = async (genreId) => {
     try {
       await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${categoryId}`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/genres/${genreId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -55,10 +55,10 @@ const Category = () => {
       dispatch(
         showAlert({
           type: "success",
-          message: "Category deleted successfully",
+          message: "Genres deleted successfully",
         })
       );
-      fetchCategories();
+      fetchGenres();
     } catch (error) {
       console.error(error);
     }
@@ -67,18 +67,18 @@ const Category = () => {
   return (
     <>
       <div className="flex items-center justify-between gap-10 mb-10">
-        <h4 className="text-2xl font-bold">Category</h4>
+        <h4 className="text-2xl font-bold">Genres</h4>
         <Link
-          href="/dashboard/category/add"
+          href="/dashboard/genre/add"
           className="button button-sm button-primary"
         >
-          Add Category
+          Add Genre
         </Link>
       </div>
 
-      {!categories && <h3 className="heading">No Categories</h3>}
+      {!genres && <h3 className="heading">No Categories</h3>}
 
-      {categories && (
+      {genres && (
         <>
           <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right">
@@ -96,29 +96,27 @@ const Category = () => {
                 </tr>
               </thead>
               <tbody>
-                {categories.map((category) => (
+                {genres.map((genre) => (
                   <tr
-                    key={category._id}
+                    key={genre._id}
                     className="border-b border-solid border-darkAlt"
                   >
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {category.name}
+                      {genre.name}
                     </th>
-                    <td className="px-6 py-4">{category.description}</td>
+                    <td className="px-6 py-4">{genre.description}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-5">
                         <button>
                           <GoPencil
-                            onClick={() => handleOpenModal(category._id)}
+                            onClick={() => handleOpenModal(genre._id)}
                             className="text-primary"
                           />
                         </button>
-                        <button
-                          onClick={() => handleDeleteCategory(category._id)}
-                        >
+                        <button onClick={() => handleDeleteGenre(genre._id)}>
                           <GoTrash className="text-red-500" />
                         </button>
                       </div>
@@ -132,12 +130,12 @@ const Category = () => {
       )}
 
       {modal.visible && (
-        <Modal title="Update Category">
-          <UpdateCategoryForm categoryId={selectedCategory} />
+        <Modal title="Update Genre">
+          <UpdateGenreForm genreId={selectedGenre} />
         </Modal>
       )}
     </>
   );
 };
 
-export default Category;
+export default Genre;

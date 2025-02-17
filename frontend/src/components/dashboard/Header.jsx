@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
 
   return (
     <header className="border-b border-solid border-darkAlt py-4">

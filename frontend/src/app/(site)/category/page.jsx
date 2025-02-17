@@ -13,7 +13,6 @@ const CategoryPage = () => {
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/all`
       );
       setCategories(response.data.data);
-      console.log(response.data.data);
     } catch (error) {
       console.error(error);
     }
