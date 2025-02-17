@@ -4,6 +4,7 @@ import {
   deleteCategoryController,
   fetchCategoriesController,
   fetchCategoryDetailController,
+  fetchCategoryDetailIdController,
   updateCategoryController,
 } from "../controllers/category.controllers.js";
 import { isAdmin, verifyUser } from "../middlewares/auth.middlewares.js";
@@ -12,6 +13,7 @@ const router = Router();
 
 // Routes
 router.route("/all").get(fetchCategoriesController);
+router.route("/:id").get(fetchCategoryDetailIdController);
 router.route("/:slug").get(fetchCategoryDetailController);
 
 router.route("/").post(verifyUser, isAdmin, createCategoryController);

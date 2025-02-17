@@ -4,14 +4,26 @@ import axios from "axios";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { GoPencil, GoTrash } from "react-icons/go";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Modal } from "@/components";
 import { showAlert } from "@/store/slices/alertSlice";
+import { showModal } from "@/store/slices/modalSlice";
+import { UpdateCategoryForm } from "@/components/dashboard";
 
 const Category = () => {
   const dispatch = useDispatch();
+  const modal = useSelector((state) => state.modal);
 
   // Fetch Category
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // Handle Open Modal
+  const handleOpenModal = (categoryId) => {
+    setSelectedCategory(categoryId);
+    dispatch(showModal());
+  };
 
   const fetchCategories = async () => {
     try {
@@ -27,7 +39,7 @@ const Category = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [modal.visible]);
 
   // Handle Delete Category
   const handleDeleteCategory = async (categoryId) => {
@@ -100,7 +112,10 @@ const Category = () => {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-5">
                         <button>
-                          <GoPencil className="text-primary" />
+                          <GoPencil
+                            onClick={() => handleOpenModal(category._id)}
+                            className="text-primary"
+                          />
                         </button>
                         <button
                           onClick={() => handleDeleteCategory(category._id)}
@@ -115,6 +130,12 @@ const Category = () => {
             </table>
           </div>
         </>
+      )}
+
+      {modal.visible && (
+        <Modal title="Update Category">
+          <UpdateCategoryForm categoryId={selectedCategory} />
+        </Modal>
       )}
     </>
   );

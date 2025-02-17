@@ -46,6 +46,32 @@ export const fetchCategoryDetailController = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, category, "Fetched Category Successfully!"));
 });
 
+// Fetch Category Detail Controller using Id
+export const fetchCategoryDetailIdController = asyncHandler(
+  async (req, res) => {
+    /**
+     * TODO: Get Id from Params
+     * TODO: Fetch Detail
+     * TODO: Sending Response
+     * **/
+
+    const { id } = req.params;
+
+    // * Get Single Category
+    const category = await Category.findById(id);
+
+    // * Check if Category exists
+    if (!category) {
+      throw new ApiError(404, "Category not found");
+    }
+
+    // * Sending Response
+    res
+      .status(200)
+      .json(new ApiResponse(200, category, "Fetched Category Successfully!"));
+  }
+);
+
 // * Admin Controls
 
 // Create Category Controller
