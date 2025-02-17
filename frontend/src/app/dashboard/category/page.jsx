@@ -1,11 +1,11 @@
 "use client";
 
-import { showAlert } from "@/store/slices/alertSlice";
 import axios from "axios";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { GoPencil, GoTrash } from "react-icons/go";
 import { useDispatch } from "react-redux";
+import { showAlert } from "@/store/slices/alertSlice";
 
 const Category = () => {
   const dispatch = useDispatch();

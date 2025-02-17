@@ -2,13 +2,15 @@
 
 import axios from "axios";
 import { useFormik } from "formik";
-
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
+import { showAlert } from "@/store/slices/alertSlice";
 import { FormInput, FormTextarea } from "@/components";
 import { categorySchema } from "@/schemas";
 
 const AddCategory = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
 
   // Handle Category Add
@@ -23,6 +25,13 @@ const AddCategory = () => {
           },
           withCredentials: true,
         }
+      );
+
+      dispatch(
+        showAlert({
+          type: "success",
+          message: response.data.message || "Category added successfully",
+        })
       );
 
       router.replace("/dashboard/category");
