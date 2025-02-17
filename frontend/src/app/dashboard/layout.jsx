@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 
 import { AuthProvider, DashboardAuthGuard } from "@/components";
-import { Content, Sidebar } from "@/components/dashboard";
+import { Content, Main, Sidebar } from "@/components/dashboard";
 import Providers from "@/store/provider";
 import "@/static/css/tailwind.config.css";
 
@@ -23,10 +23,10 @@ export default function DashboardLayout({ children }) {
         <Providers>
           <AuthProvider>
             <DashboardAuthGuard>
-              <main className="db-main">
+              <Main>
                 <Sidebar />
                 <Content>{children}</Content>
-              </main>
+              </Main>
             </DashboardAuthGuard>
           </AuthProvider>
         </Providers>

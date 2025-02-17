@@ -1,8 +1,10 @@
+import Alert from "./Alert";
 import AuthProvider from "./AuthProvider";
 import DashboardAuthGuard from "./DashboardAuthGuard";
 
 import Footer from "./Footer";
 import Header from "./Header";
+import Modal from "./Modal";
 import MovieCard from "./MovieCard";
 import SwiperSlider from "./SwiperSlider";
 
@@ -18,4 +20,6 @@ export {
   FormTextarea,
   AuthProvider,
   DashboardAuthGuard,
+  Modal,
+  Alert,
 };

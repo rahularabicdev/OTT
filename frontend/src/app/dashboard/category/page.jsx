@@ -1,11 +1,15 @@
 "use client";
 
+import { showAlert } from "@/store/slices/alertSlice";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { GoPencil, GoTrash } from "react-icons/go";
+import { useDispatch } from "react-redux";
 
 const Category = () => {
+  const dispatch = useDispatch();
+
   // Fetch Category
   const [categories, setCategories] = useState([]);
 
@@ -24,6 +28,30 @@ const Category = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  // Handle Delete Category
+  const handleDeleteCategory = async (categoryId) => {
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/categories/${categoryId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      dispatch(
+        showAlert({
+          type: "success",
+          message: "Category deleted successfully",
+        })
+      );
+      fetchCategories();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -74,7 +102,9 @@ const Category = () => {
                         <button>
                           <GoPencil className="text-primary" />
                         </button>
-                        <button>
+                        <button
+                          onClick={() => handleDeleteCategory(category._id)}
+                        >
                           <GoTrash className="text-red-500" />
                         </button>
                       </div>

@@ -1,13 +1,16 @@
 "use client";
 
 import axios from "axios";
-import Link from "next/link";
 import { useFormik } from "formik";
+
+import { useRouter } from "next/navigation";
 
 import { FormInput, FormTextarea } from "@/components";
 import { categorySchema } from "@/schemas";
 
 const AddCategory = () => {
+  const router = useRouter();
+
   // Handle Category Add
   const handleAddCategory = async (values, { setErrors, setSubmitting }) => {
     try {
@@ -22,9 +25,7 @@ const AddCategory = () => {
         }
       );
 
-      console.log(response);
-
-      //   navigate("/dashboard/category", { replace: true });
+      router.replace("/dashboard/category");
     } catch (error) {
       setSubmitting(false);
       if (error.response) {
