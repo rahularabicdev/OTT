@@ -84,3 +84,8 @@ export const genreSchema = yup.object().shape({
   name: yup.string().required("Please enter Genre Name"),
   description: yup.string().required("Please enter Genre Description"),
 });
+
+// Cast Schema Validation
+export const castSchema = yup.object().shape({
+  name: yup.string().required("Please enter Cast Name"),
+});

@@ -31,6 +31,11 @@ const Sidebar = () => {
             Genre
           </Link>
         </li>
+        <li className="mb-4">
+          <Link href="/dashboard/cast" className="text-lightAlt">
+            Cast
+          </Link>
+        </li>
       </ul>
     </aside>
   );
