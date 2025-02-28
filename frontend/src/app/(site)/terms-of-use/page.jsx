@@ -16,7 +16,7 @@ const TermsOfUsePage = () => {
             accessing Spectraflix content, including all features and
             functionalities, recommendations and reviews, our websites, and user
             interfaces, as well as all content and software associated with our
-            service. References to ‘you’ in these Terms of Use indicate the
+            service. References to 'you' in these Terms of Use indicate the
             member who created the Spectraflix account and whose payment method
             is charged.
           </p>
