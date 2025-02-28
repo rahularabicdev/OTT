@@ -11,14 +11,12 @@ const VideoSchema = new mongoose.Schema(
     },
     video_url: {
       type: String,
-      required: true,
     },
     thumbnail_url: {
       type: String,
-      required: true,
     },
     duration: {
-      type: Number,
+      type: String,
       required: true,
     },
     views: {
@@ -52,7 +50,6 @@ const VideoSchema = new mongoose.Schema(
         },
         role: {
           type: String,
-          required: true,
         },
       },
     ],

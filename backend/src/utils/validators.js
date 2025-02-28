@@ -40,3 +40,11 @@ export const compareFieldValidation = (input1, input2, errMessage) => {
   }
   return true;
 };
+
+// Is File Empty Validation
+export const isFileEmptyValidation = (file) => {
+  if (!file) {
+    throw new ApiError(400, "Please upload a file");
+  }
+  return true;
+};
