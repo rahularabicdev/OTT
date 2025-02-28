@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  addVideoCastsController,
   createVideoController,
   deleteVideoController,
   fetchAllVideosController,
@@ -29,5 +30,8 @@ router
   .route("/:id/update")
   .patch(verifyUser, isAdmin, updateVideoDetailsController);
 router.route("/:id/delete").delete(verifyUser, isAdmin, deleteVideoController);
+router
+  .route("/:id/add-cast")
+  .patch(verifyUser, isAdmin, addVideoCastsController);
 
 export default router;

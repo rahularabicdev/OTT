@@ -5,6 +5,7 @@ import ApiError from "../utils/apiError.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/apiResponse.js";
 import { notEmptyValidation } from "../utils/validators.js";
+import Cast from "../models/cast.model.js";
 
 // Fetch All Videos
 export const fetchAllVideosController = asyncHandler(async (req, res) => {
@@ -191,4 +192,62 @@ export const deleteVideoController = asyncHandler(async (req, res) => {
   res
     .status(200)
     .json(new ApiResponse(200, null, "Video deleted successfully!"));
+});
+
+// Add Casts to Video Controller
+export const addVideoCastsController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Video Id from Params
+   * TODO: Get data from Frontend
+   * TODO: Validate Data
+   * TODO: Update Cast
+   * TODO: Sending Response
+   **/
+
+  // * Get Video Id from Params
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video ID");
+  }
+
+  // * Find Video by Id
+  const video = await Video.findById(id);
+  if (!video) throw new ApiError(404, "Video not found");
+
+  // * Get Data from Frontend
+  const { castId, role } = req.body;
+
+  // * Validate Cast Data
+  notEmptyValidation([castId, role]);
+
+  // * Validate Cast ID
+  if (!mongoose.Types.ObjectId.isValid(castId)) {
+    throw new ApiError(400, "Invalid cast ID");
+  }
+
+  // * Check if Cast Exists
+  const cast = await Cast.findById(castId);
+  if (!cast) throw new ApiError(404, "Cast not found");
+
+  // * Check if Cast is Already Added to Video
+  const castAlreadyExists = video.casts.some(
+    (item) => item.cast.toString() === castId
+  );
+
+  if (castAlreadyExists) {
+    throw new ApiError(400, "Cast already added to this video");
+  }
+
+  // * Add Cast to Video
+  video.casts.push({ cast: castId, role });
+
+  // * Save Updated Video
+  await video.save();
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, video, "Cast added to video successfully!"));
 });
