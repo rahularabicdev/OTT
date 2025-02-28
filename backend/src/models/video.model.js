@@ -43,6 +43,19 @@ const VideoSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
+
+    casts: [
+      {
+        cast: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Cast",
+        },
+        role: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
