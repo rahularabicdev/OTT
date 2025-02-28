@@ -166,3 +166,29 @@ export const updateVideoDetailsController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, videoExist, "Video updated successfully!"));
 });
+
+// Delete Video Controller
+export const deleteVideoController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Id from params
+   * TODO: Search Video and Delete
+   * TODO: Sending Response
+   * **/
+
+  // * Get Id from Query
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video id");
+  }
+
+  // * Find Video by Id
+  const video = await Video.findByIdAndDelete(id);
+  if (!video) throw new ApiError(404, "Video not found");
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, null, "Video deleted successfully!"));
+});

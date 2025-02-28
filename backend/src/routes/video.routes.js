@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createVideoController,
+  deleteVideoController,
   fetchAllVideosController,
   updateVideoDetailsController,
   uploadVideoController,
@@ -27,5 +28,6 @@ router
 router
   .route("/:id/update")
   .patch(verifyUser, isAdmin, updateVideoDetailsController);
+router.route("/:id/delete").delete(verifyUser, isAdmin, deleteVideoController);
 
 export default router;
