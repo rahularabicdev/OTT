@@ -92,3 +92,77 @@ export const uploadVideoThumbnailController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, video, "Video thumbnail updated successfully!"));
 });
+
+// ! Upload Video Controller
+export const uploadVideoController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Video Id from Query
+   * TODO: Get file from Frontend
+   * TODO: Upload File
+   * TODO: Sending Response
+   * **/
+
+  // * Get Video Id from Query
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video id");
+  }
+
+  // * Find Video by Id
+  const videoExist = await Video.findById(id);
+  if (!videoExist) throw new ApiError(404, "Video not found");
+
+  // * Get File from Frontend
+  const video = req.file?.path;
+  if (!video) throw new ApiError(400, "No Video provided");
+
+  // * Update Video Thumbnail
+  videoExist.video_url = video;
+  await videoExist.save();
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, videoExist, "Video updated successfully!"));
+});
+
+// Update Video Details Controller
+export const updateVideoDetailsController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Video Id from Params
+   * TODO: Get Data from Frontend
+   * TODO: Validate Input
+   * TODO: Update Video Details
+   * TODO: Send Response
+   * **/
+
+  // * Get Video Id from Params
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video id");
+  }
+
+  // * Find Video by Id
+  const videoExist = await Video.findById(id);
+  if (!videoExist) throw new ApiError(404, "Video not found");
+
+  // * Get Data from Frontend
+  const { title, description, duration, category, genres } = req.body;
+
+  // * Update Video Details
+  if (title) videoExist.title = title;
+  if (description) videoExist.description = description;
+  if (duration) videoExist.duration = duration;
+  if (category) videoExist.category = category;
+  if (genres) videoExist.genres = genres;
+  await videoExist.save();
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, videoExist, "Video updated successfully!"));
+});
