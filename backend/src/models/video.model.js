@@ -56,6 +56,17 @@ const VideoSchema = new mongoose.Schema(
         },
       },
     ],
+
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+    },
+    genres: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Genre",
+      },
+    ],
   },
   {
     timestamps: true,
