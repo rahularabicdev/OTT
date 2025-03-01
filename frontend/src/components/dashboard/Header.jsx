@@ -3,6 +3,8 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
+import { logout } from "@/store/slices/authSlice";
+
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
@@ -30,7 +32,6 @@ const Header = () => {
 
       // Reset the Redux store
       dispatch(logout());
-      setDropdownActive(false);
     } catch (error) {
       console.error("Error during logout:", error);
     }
