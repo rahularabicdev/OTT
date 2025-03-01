@@ -5,6 +5,7 @@ import {
   deleteVideoController,
   fetchAllVideosController,
   removeVideoCastController,
+  removeVideoThumbnailController,
   updateVideoCastController,
   updateVideoDetailsController,
   uploadVideoController,
@@ -25,6 +26,9 @@ router.route("/").post(verifyUser, isAdmin, createVideoController);
 router
   .route("/:id/thumbnail")
   .patch(verifyUser, isAdmin, thumbnailUpload, uploadVideoThumbnailController);
+router
+  .route("/:id/thumbnail-remove")
+  .patch(verifyUser, isAdmin, removeVideoThumbnailController);
 router
   .route("/:id/video")
   .patch(verifyUser, isAdmin, videoUpload, uploadVideoController);

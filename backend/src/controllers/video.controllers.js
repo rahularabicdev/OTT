@@ -1,3 +1,4 @@
+import fs from "fs";
 import mongoose from "mongoose";
 
 import Video from "../models/video.model.js";
@@ -92,6 +93,43 @@ export const uploadVideoThumbnailController = asyncHandler(async (req, res) => {
   res
     .status(200)
     .json(new ApiResponse(200, video, "Video thumbnail updated successfully!"));
+});
+
+// Remove Video Thumbnail COntroller
+export const removeVideoThumbnailController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Video Id from Query
+   * TODO: Remove File from Server
+   * TODO: Update Video Thumbnail to null
+   * TODO: Sending Response
+   * **/
+
+  // * Get Video Id from Query
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video id");
+  }
+
+  // * Find Video by Id
+  const video = await Video.findById(id);
+  if (!video) throw new ApiError(404, "Video not found");
+
+  // * Remove Video Thumbnail from Server
+  if (video.thumbnail_url) {
+    const thumbnailPath = video.thumbnail_url;
+    await fs.promises.unlink(thumbnailPath);
+  }
+
+  // * Update Video Thumbnail to null
+  video.thumbnail_url = undefined;
+  await video.save();
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, video, "Video thumbnail removed successfully!"));
 });
 
 // ! Upload Video Controller
