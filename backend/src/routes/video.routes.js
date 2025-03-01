@@ -5,6 +5,7 @@ import {
   deleteVideoController,
   fetchAllVideosController,
   removeVideoCastController,
+  removeVideoController,
   removeVideoThumbnailController,
   updateVideoCastController,
   updateVideoDetailsController,
@@ -23,19 +24,26 @@ const thumbnailUpload = uploadMiddleware("thumbnail");
 // Routes
 router.route("/").get(fetchAllVideosController);
 router.route("/").post(verifyUser, isAdmin, createVideoController);
+
 router
   .route("/:id/thumbnail")
   .patch(verifyUser, isAdmin, thumbnailUpload, uploadVideoThumbnailController);
 router
   .route("/:id/thumbnail-remove")
   .patch(verifyUser, isAdmin, removeVideoThumbnailController);
+
 router
   .route("/:id/video")
   .patch(verifyUser, isAdmin, videoUpload, uploadVideoController);
 router
+  .route("/:id/video-remove")
+  .patch(verifyUser, isAdmin, removeVideoController);
+
+router
   .route("/:id/update")
   .patch(verifyUser, isAdmin, updateVideoDetailsController);
 router.route("/:id/delete").delete(verifyUser, isAdmin, deleteVideoController);
+
 router
   .route("/:id/add-cast")
   .patch(verifyUser, isAdmin, addVideoCastsController);

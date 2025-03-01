@@ -132,7 +132,7 @@ export const removeVideoThumbnailController = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, video, "Video thumbnail removed successfully!"));
 });
 
-// ! Upload Video Controller
+// Upload Video Controller
 export const uploadVideoController = asyncHandler(async (req, res) => {
   /**
    * TODO: Get Video Id from Query
@@ -155,9 +155,10 @@ export const uploadVideoController = asyncHandler(async (req, res) => {
 
   // * Get File from Frontend
   const video = req.file?.path;
-  if (!video) throw new ApiError(400, "No Video provided");
 
-  // * Update Video Thumbnail
+  if (!video) throw new ApiError(400, "No video provided");
+
+  // * Update Video
   videoExist.video_url = video;
   await videoExist.save();
 
@@ -165,6 +166,43 @@ export const uploadVideoController = asyncHandler(async (req, res) => {
   res
     .status(200)
     .json(new ApiResponse(200, videoExist, "Video updated successfully!"));
+});
+
+// Remove Video COntroller
+export const removeVideoController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Video Id from Query
+   * TODO: Remove File from Server
+   * TODO: Update Video to null
+   * TODO: Sending Response
+   * **/
+
+  // * Get Video Id from Query
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video id");
+  }
+
+  // * Find Video by Id
+  const video = await Video.findById(id);
+  if (!video) throw new ApiError(404, "Video not found");
+
+  // * Remove Video Thumbnail from Server
+  if (video.video_url) {
+    const videoPath = video.video_url;
+    await fs.promises.unlink(videoPath);
+  }
+
+  // * Update Video Thumbnail to null
+  video.video_url = undefined;
+  await video.save();
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, video, "Video removed successfully!"));
 });
 
 // Update Video Details Controller
