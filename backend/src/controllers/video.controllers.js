@@ -16,7 +16,12 @@ export const fetchAllVideosController = asyncHandler(async (req, res) => {
    * **/
 
   // * Fetch All Videos
-  const videos = await Video.find();
+  const videos = await Video.find()
+    .populate("category")
+    .populate("genres")
+    .populate({
+      path: "casts.cast",
+    });
 
   // * Sending Response
   res
