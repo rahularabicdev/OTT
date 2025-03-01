@@ -5,6 +5,7 @@ import {
   deleteVideoController,
   fetchAllVideosController,
   removeVideoCastController,
+  updateVideoCastController,
   updateVideoDetailsController,
   uploadVideoController,
   uploadVideoThumbnailController,
@@ -37,5 +38,8 @@ router
 router
   .route("/:id/remove-cast")
   .patch(verifyUser, isAdmin, removeVideoCastController);
+router
+  .route("/:id/update-cast")
+  .patch(verifyUser, isAdmin, updateVideoCastController);
 
 export default router;
