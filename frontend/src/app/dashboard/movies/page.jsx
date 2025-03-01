@@ -18,7 +18,7 @@ const Movies = () => {
 
   // Fetch Movies
   const [movies, setMovies] = useState([]);
-  const [setselectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   // Handle Open Modal
   const handleOpenModal = (videoId) => {
