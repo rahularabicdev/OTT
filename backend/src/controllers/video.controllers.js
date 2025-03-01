@@ -251,3 +251,54 @@ export const addVideoCastsController = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, video, "Cast added to video successfully!"));
 });
+
+// Remove Cast from Video Controller
+export const removeVideoCastController = asyncHandler(async (req, res) => {
+  /**
+   * TODO: Get Id from params
+   * TODO: Get data from frontend
+   * TODO: Validate data
+   * TODO: Update data
+   * TODO: Sending Response
+   **/
+
+  // * Get Video Id from Params
+  const { id } = req.params;
+
+  // * Validate Video Id
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(400, "Invalid video ID");
+  }
+
+  // * Find Video by Id
+  const video = await Video.findById(id);
+  if (!video) throw new ApiError(404, "Video not found");
+
+  // * Get Cast ID from Query
+  const { castId } = req.query;
+
+  // * Validate Cast ID
+  if (!castId || !mongoose.Types.ObjectId.isValid(castId)) {
+    throw new ApiError(400, "Invalid cast ID");
+  }
+
+  // * Check if Cast Exists in Video
+  const castIndex = video.casts.findIndex((item) => {
+    return item._id.toString() === castId;
+  });
+
+  if (castIndex === -1) {
+    throw new ApiError(404, "Cast not found in this video");
+  }
+
+  // * Remove Cast from Video
+  video.casts.splice(castIndex, 1);
+
+  // * Save Updated Video
+  await video.save();
+
+  // * Sending Response
+  res
+    .status(200)
+    .json(new ApiResponse(200, video, "Cast removed from video successfully!"));
+});
