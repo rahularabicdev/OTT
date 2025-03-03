@@ -89,3 +89,15 @@ export const genreSchema = yup.object().shape({
 export const castSchema = yup.object().shape({
   name: yup.string().required("Please enter Cast Name"),
 });
+
+// Video Schema Validation
+export const videoSchema = yup.object().shape({
+  title: yup.string().required("Please enter Movie Title"),
+  description: yup.string().required("Please enter Movie Description"),
+  duration: yup.string().required("Please enter Release Date"),
+  category: yup.object().required("Please select a Category"),
+  genres: yup
+    .array()
+    .min(1, "At least one genre is required")
+    .required("Genres are required"),
+});

@@ -12,34 +12,34 @@ import { Modal } from "@/components";
 import { showAlert } from "@/store/slices/alertSlice";
 import { showModal } from "@/store/slices/modalSlice";
 
-const Movies = () => {
+const Videos = () => {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal);
 
-  // Fetch Movies
-  const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  // Fetch Videos
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   // Handle Open Modal
   const handleOpenModal = (videoId) => {
-    setSelectedMovie(videoId);
+    setSelectedVideo(videoId);
     dispatch(showModal());
   };
 
-  const fetchMovies = async () => {
+  const fetchVideos = async () => {
     try {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/videos/`
       );
 
-      setMovies(response.data.data);
+      setVideos(response.data.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    fetchMovies();
+    fetchVideos();
   }, [modal.visible]);
 
   // Handle Delete Video
@@ -60,7 +60,7 @@ const Movies = () => {
           message: "Video deleted successfully",
         })
       );
-      fetchMovies();
+      fetchVideos();
     } catch (error) {
       console.error(error);
     }
@@ -77,18 +77,18 @@ const Movies = () => {
   return (
     <>
       <div className="flex items-center justify-between gap-10 mb-10">
-        <h4 className="text-2xl font-bold">Movies</h4>
+        <h4 className="text-2xl font-bold">Videos</h4>
         <Link
-          href="/dashboard/movies/add"
+          href="/dashboard/video/add"
           className="button button-sm button-primary"
         >
-          Add Movie
+          Add Video
         </Link>
       </div>
 
-      {!movies && <h3 className="heading">No Movies</h3>}
+      {!videos && <h3 className="heading">No Videos</h3>}
 
-      {movies && (
+      {videos && (
         <>
           <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left rtl:text-right">
@@ -109,9 +109,9 @@ const Movies = () => {
                 </tr>
               </thead>
               <tbody>
-                {movies.map((movie) => (
+                {videos.map((video) => (
                   <tr
-                    key={movie._id}
+                    key={video._id}
                     className="border-b border-solid border-darkAlt"
                   >
                     <th
@@ -121,20 +121,20 @@ const Movies = () => {
                       <div className="flex items-center justify-start gap-2">
                         <div className="relative w-20 h-14 rounded overflow-hidden">
                           <Image
-                            src={imageUrl(movie.thumbnail_url)}
-                            alt={movie.title}
+                            src={imageUrl(video.thumbnail_url)}
+                            alt={video.title}
                             fill
                             className="w-full h-full object-cover object-center"
                           />
                         </div>
-                        <span className="truncate w-52">{movie.title}</span>
+                        <span className="truncate w-52">{video.title}</span>
                       </div>
                     </th>
                     <td className="px-6 py-4">
-                      <span>{movie.category.name}</span>
+                      <span>{video.category.name}</span>
                     </td>
                     <td className="px-6 py-4">
-                      {movie.genres.map((genre) => (
+                      {video.genres.map((genre) => (
                         <span key={genre._id}>{genre.name}</span>
                       ))}
                     </td>
@@ -142,17 +142,17 @@ const Movies = () => {
                       <div className="flex items-center gap-5">
                         <button>
                           <GoLinkExternal
-                            onClick={() => handleOpenModal(movie._id)}
+                            onClick={() => handleOpenModal(video._id)}
                             className="text-white"
                           />
                         </button>
                         <button>
                           <GoPencil
-                            onClick={() => handleOpenModal(movie._id)}
+                            onClick={() => handleOpenModal(video._id)}
                             className="text-primary"
                           />
                         </button>
-                        <button onClick={() => handleDeleteVideo(movie._id)}>
+                        <button onClick={() => handleDeleteVideo(video._id)}>
                           <GoTrash className="text-red-500" />
                         </button>
                       </div>
@@ -174,4 +174,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Videos;

@@ -10,6 +10,7 @@ import SwiperSlider from "./SwiperSlider";
 
 import FormInput from "./form/Input";
 import FormTextarea from "./form/Textarea";
+import FormSelect from "./form/Select";
 
 export {
   Header,
@@ -18,6 +19,7 @@ export {
   Footer,
   FormInput,
   FormTextarea,
+  FormSelect,
   AuthProvider,
   DashboardAuthGuard,
   Modal,

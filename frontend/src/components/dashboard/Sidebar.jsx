@@ -17,8 +17,8 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className="mb-4">
-          <Link href="/dashboard/movies" className="text-lightAlt">
-            Movies
+          <Link href="/dashboard/video" className="text-lightAlt">
+            Video
           </Link>
         </li>
         <li className="mb-4">
